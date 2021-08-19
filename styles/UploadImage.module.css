@@ -1,35 +1,39 @@
 .container {
+  width: 100%;
   background: #fff;
   position: relative;
-  /* width: 90%; */
-  /* max-width: var(--width-max); */
-  /* height: 300px; */
-  padding: 2em;
-  margin: 10px auto;
+  /* padding: 2em 0; */
   display: flex;
+  margin: 0 auto;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 0.1em dotted var(--grey);
+  /* box-shadow: 0 0 0 1px rgba(255,255,255,.05), inset 0 0 .25em 0 rgba(0,0,0,.25); */
+}
+
+.droparea {
+  width: 100%;
+  padding: 2em;
+  border: 0.15em dotted grey;
   text-align: center;
-  color: var(--grey);
+  border-radius: 0.5em;
+  color: rgb(56, 56, 56);
   z-index: 20;
   transition: all 0.3s ease-out;
   cursor: pointer;
-  border-radius: 0.5em;
-  /* box-shadow: 0 0 0 1px rgba(255,255,255,.05), inset 0 0 .25em 0 rgba(0,0,0,.25); */
 }
 
 .buttons {
   display: flex;
   column-gap: 1em;
 }
+
 .btn__clear {
-  background-color: var(--red);
+  background-color: rgb(199, 97, 97);
 }
 
 .btn__upload {
-  background-color: var(--greenblue);
+  background-color: rgb(23, 109, 90);
 }
 
 .img__preview {
@@ -52,11 +56,4 @@
   border-radius: 6px;
   color: white;
   font-weight: bold;
-}
-
-i.remove {
-  cursor: pointer;
-}
-i.remove:hover {
-  transform: scale(1.3);
 }

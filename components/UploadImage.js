@@ -1,12 +1,13 @@
-import { useState, useRef } from 'react';
-import css from '../styles/UploadImage.module.css';
+import { useState, useRef } from "react";
+import css from "../styles/UploadImage.module.css";
 
 const UploadImage = ({ data, dispatch }) => {
-  const fileInput = useRef(null);
   const [image, setImage] = useState(null);
   const [blob, setBlob] = useState(null);
+  const fileInput = useRef(null);
+  const dropInput = useRef(null);
 
-  const handleDragStart = e => {
+  const handleDragStart = (e) => {
     e.dataTransfer.clearData();
   };
 
@@ -18,59 +19,62 @@ const UploadImage = ({ data, dispatch }) => {
     setBlob(null);
     setImage(null);
   };
-  const handleDragEnter = e => {
+
+  const handleDragEnter = (e) => {
     e.preventDefault();
     e.stopPropagation();
     dispatch({
-      type: 'SET_DROP_DEPTH',
+      type: "SET_DROP_DEPTH",
       dropDepth: data.dropDepth + 1
     });
   };
 
-  const handleDragLeave = e => {
+  const handleDragLeave = (e) => {
     e.preventDefault();
     e.stopPropagation();
     dispatch({
-      type: 'SET_DROP_DEPTH',
+      type: "SET_DROP_DEPTH",
       dropDepth: data.dropDepth - 1
     });
     data.dropDepth > 0 &&
-      dispatch({ type: 'SET_IN_DROP_ZONE', inDropZone: false });
+      dispatch({ type: "SET_IN_DROP_ZONE", inDropZone: false });
   };
 
-  const handleDragOver = e => {
+  const handleDragOver = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    e.dataTransfer.dropEffect = 'copy';
+    e.dataTransfer.dropEffect = "copy";
     dispatch({
-      type: 'SET_IN_DROP_ZONE',
+      type: "SET_IN_DROP_ZONE",
       inDropZone: true
     });
   };
 
-  const handleDrop = e => {
+  const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
     const newImage = e.dataTransfer.files[0];
     const newBlob = URL.createObjectURL(newImage);
     dispatch({
-      type: 'ADD_FILE_TO_LIST',
+      type: "ADD_FILE_TO_LIST",
       newImage
     });
     setBlob(newBlob);
     setImage(newImage);
-    dispatch({ type: 'SET_DROP_DEPTH', dropDepth: 0 });
-    dispatch({ type: 'SET_IN_DROP_ZONE', inDropZone: false });
+    dispatch({ type: "SET_DROP_DEPTH", dropDepth: 0 });
+    dispatch({ type: "SET_IN_DROP_ZONE", inDropZone: false });
   };
 
-  const handleClick = e => {
+  const handleClick = (e) => {
+    e.preventDefault();
     const newBlob = URL.createObjectURL(e.target.files[0]);
+    console.log(newBlob);
     setBlob(newBlob);
     const newImage = e.target.files[0];
     setImage(newImage);
     console.log(newImage);
     dispatch({
-      type: 'ADD_FILE_TO_LIST',
+      type: "ADD_FILE_TO_LIST",
       newImage
     });
   };
@@ -79,8 +83,8 @@ const UploadImage = ({ data, dispatch }) => {
     <div>
       <div className={css.container}>
         <div
+          className={css.droparea}
           ref={dropInput}
-          className={dropZone}
           onDragStart={handleDragStart}
           onDragEnter={handleDragEnter}
           onDragLeave={handleDragLeave}
@@ -89,7 +93,7 @@ const UploadImage = ({ data, dispatch }) => {
           onClick={onButtonClick}
         >
           <input
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
             ref={fileInput}
             onChange={handleClick}
             type="file"
@@ -99,22 +103,17 @@ const UploadImage = ({ data, dispatch }) => {
             autoComplete="off"
             tabIndex="-1"
           />
-          <label htmlFor="file" name="file">
-            Click to upload{' '}
-          </label>
           <p>Drag and drop your image file here, or click to select file</p>
-          <div style={!blob && { display: 'none' }}>
-            <img className={css.img__preview} src={blob && blob} />
+          <div style={!blob && { display: "none" }}>
+            <img className={css.img__preview} alt="preview" src={blob} />
           </div>
         </div>
       </div>
-      <div className={css.buttons}>
-        {image && (
-          <button className={`btn ${css.btn__clear}`} onClick={handleClearFile}>
-            Clear file
-          </button>
-        )}
-      </div>
+      {image && (
+        <button className={`btn ${css.btn__clear}`} onClick={handleClearFile}>
+          Clear file
+        </button>
+      )}
     </div>
   );
 };
