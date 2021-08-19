@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import css from '../styles/UploadImage.modul.css';
+import css from '../styles/UploadImage.module.css';
 
 const UploadImage = ({ data, dispatch }) => {
   const fileInput = useRef(null);
