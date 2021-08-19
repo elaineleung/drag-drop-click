@@ -80,7 +80,6 @@ const UploadImage = ({ data, dispatch }) => {
   };
 
   return (
-    <div>
       <div className={css.container}>
         <div
           className={css.droparea}
@@ -104,17 +103,17 @@ const UploadImage = ({ data, dispatch }) => {
             tabIndex="-1"
           />
           <p>Drag and drop your image file here, or click to select file</p>
-          <div style={!blob && { display: "none" }}>
+          <div style={ !blob ? { display: "none" } : { display: "block" }}>
             <img className={css.img__preview} alt="preview" src={blob} />
+            <p>Image preview</p>
           </div>
         </div>
-      </div>
-      {image && (
+        {image && (
         <button className={`btn ${css.btn__clear}`} onClick={handleClearFile}>
           Clear file
         </button>
       )}
-    </div>
+      </div>
   );
 };
 

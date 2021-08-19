@@ -21,6 +21,7 @@
   z-index: 20;
   transition: all 0.3s ease-out;
   cursor: pointer;
+  margin-bottom: 1em;
 }
 
 .buttons {
@@ -37,23 +38,7 @@
 }
 
 .img__preview {
-  width: 300px;
-  margin-bottom: 35px;
+  width: 90%;
+  border: 0.1em solid grey;
 }
 
-.img__preview span {
-  font-size: 14px;
-}
-
-.file__metadata {
-  flex-direction: column;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 10px;
-  border-radius: 6px;
-  color: white;
-  font-weight: bold;
-}
