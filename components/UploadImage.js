@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import css from "../styles/UploadImage.module.css";
 
-const UploadImage = ({ data, dispatch }) => {
+const UploadImage = ({ data, dispatch, children }) => {
   const [image, setImage] = useState(null);
   const [blob, setBlob] = useState(null);
   const fileInput = useRef(null);
@@ -80,40 +80,39 @@ const UploadImage = ({ data, dispatch }) => {
   };
 
   return (
-      <div className={css.container}>
-        <div
-          className={css.droparea}
-          ref={dropInput}
-          onDragStart={handleDragStart}
-          onDragEnter={handleDragEnter}
-          onDragLeave={handleDragLeave}
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
-          onClick={onButtonClick}
-        >
-          <input
-            style={{ display: "none" }}
-            ref={fileInput}
-            onChange={handleClick}
-            type="file"
-            id="file"
-            accept="image/gif, image/jpeg, image/png"
-            name="file"
-            autoComplete="off"
-            tabIndex="-1"
-          />
-          <p>Drag and drop your image file here, or click to select file</p>
-          <div style={ !blob ? { display: "none" } : { display: "block" }}>
-            <img className={css.img__preview} alt="preview" src={blob} />
-            <p>Image preview</p>
-          </div>
+    <div className={css.container}>
+      <div
+        className={css.droparea}
+        ref={dropInput}
+        onDragStart={handleDragStart}
+        onDragEnter={handleDragEnter}
+        onDragLeave={handleDragLeave}
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
+        onClick={onButtonClick}
+      >
+        <input
+          style={{ display: "none" }}
+          ref={fileInput}
+          onChange={handleClick}
+          type="file"
+          id="file"
+          accept="image/gif, image/jpeg, image/png"
+          name="file"
+          autoComplete="off"
+          tabIndex="-1"
+        />
+        {children}
+        <div style={!blob ? { display: "none" } : { display: "block" }}>
+          <img className={css.img__preview} alt="preview" src={blob} />
         </div>
-        {image && (
+      </div>
+      {image && (
         <button className={`btn ${css.btn__clear}`} onClick={handleClearFile}>
           Clear file
         </button>
       )}
-      </div>
+    </div>
   );
 };
 

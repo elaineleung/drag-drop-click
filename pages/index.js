@@ -22,7 +22,12 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.main__container}>
           <h1 className={styles.title}>Drag, Drop, Click</h1>
-          <UploadImage data={data} dispatch={dispatch} />
+          <UploadImage data={data} dispatch={dispatch}>
+            <p>
+              Drag and drop your image file here,{" "}
+              <span>or click to select file</span>
+            </p>
+          </UploadImage>
         </div>
       </main>
     </div>

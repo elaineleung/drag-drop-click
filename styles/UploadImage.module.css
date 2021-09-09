@@ -2,13 +2,11 @@
   width: 100%;
   background: #fff;
   position: relative;
-  /* padding: 2em 0; */
   display: flex;
   margin: 0 auto;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* box-shadow: 0 0 0 1px rgba(255,255,255,.05), inset 0 0 .25em 0 rgba(0,0,0,.25); */
 }
 
 .droparea {
@@ -24,21 +22,29 @@
   margin-bottom: 1em;
 }
 
-.buttons {
-  display: flex;
-  column-gap: 1em;
-}
-
 .btn__clear {
   background-color: rgb(199, 97, 97);
-}
-
-.btn__upload {
-  background-color: rgb(23, 109, 90);
+  margin: 0 auto;
 }
 
 .img__preview {
-  width: 90%;
-  border: 0.1em solid grey;
+  width: 300px;
+  margin-bottom: 35px;
 }
 
+.img__preview span {
+  font-size: 14px;
+}
+
+.file__metadata {
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+}
