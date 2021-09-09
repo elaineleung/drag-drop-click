@@ -8,7 +8,7 @@ const UploadImage = ({ data, dispatch, children }) => {
   const dropInput = useRef(null);
 
   const handleDragStart = (e) => {
-    e.dataTransfer.clearData();
+    e.dataTransfer.effectAllowed = "move"
   };
 
   const onButtonClick = () => {
@@ -23,6 +23,7 @@ const UploadImage = ({ data, dispatch, children }) => {
   const handleDragEnter = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    e.dataTransfer.dropEffect = "move";
     dispatch({
       type: "SET_DROP_DEPTH",
       dropDepth: data.dropDepth + 1
@@ -43,7 +44,7 @@ const UploadImage = ({ data, dispatch, children }) => {
   const handleDragOver = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    e.dataTransfer.dropEffect = "copy";
+    e.dataTransfer.dropEffect = "copy"
     dispatch({
       type: "SET_IN_DROP_ZONE",
       inDropZone: true

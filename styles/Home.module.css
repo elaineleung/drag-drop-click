@@ -20,7 +20,8 @@
 
 .main__container {
   width: 90%;
-  max-width: 515px;
+  max-width: 550px;
+  cursor: pointer;
   /* border: 1px solid magenta; */
 }
 
